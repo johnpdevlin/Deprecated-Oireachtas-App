@@ -1,7 +1,5 @@
 /** @format */
 
-import { end } from 'cheerio/lib/api/traversing';
-import { endOfDecadeWithOptions } from 'date-fns/fp';
 import house from '../../../Models/house';
 
 export default async function formatHouse(h: any): Promise<house> {
