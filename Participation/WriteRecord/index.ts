@@ -56,7 +56,7 @@ export async function aggregateParticipationChecker(
 		house
 	);
 
-	const batchArray: participationRecord[] = [
+	const batchArray: participationRecord | groupParticipationRecord[] = [
 		houseRecords,
 		...memberRecords,
 		...partiesRecords,

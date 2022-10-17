@@ -60,7 +60,9 @@ export default function TDlayout(props: {
 									</Grid>
 									{/* Recent Deposits */}
 									<Grid item sx={{ display: 'flex', minWidth: '30%' }} lg={4}>
-										<SideBar offices={props.member.pastOffices!} />
+										{props.member.offices! ? (
+											<SideBar offices={props.member.pastOffices!} />
+										) : null}
 									</Grid>
 									{/* Participation Table */}
 									<Grid item xs={12}>

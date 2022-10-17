@@ -1,7 +1,6 @@
 /** @format */
 
 import { ThemeProvider } from '@emotion/react';
-import { PropaneTwoTone } from '@mui/icons-material';
 import {
 	CssBaseline,
 	Box,
@@ -191,7 +190,11 @@ export default function IndexLayout(props: {
 							<Grid
 								container
 								spacing={2}
-								sx={{ minWidth: '100%', display: 'flex' }}>
+								sx={{
+									minWidth: '100%',
+									display: 'flex',
+									alignItems: 'center',
+								}}>
 								{props.members.map((member, index) => {
 									return <TDcard member={member} />;
 								})}

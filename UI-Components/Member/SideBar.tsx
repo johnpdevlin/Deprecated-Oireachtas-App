@@ -3,7 +3,7 @@
 import * as React from 'react';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
-import { membership } from '../Models/UI/member';
+import { membership } from '../../Models/UI/member';
 import { Box, Divider, Paper } from '@mui/material';
 
 function pastOffice(office: membership) {
@@ -31,8 +31,8 @@ export default function SideBar(props: { offices: any[] }) {
 				<Box sx={{ mb: 1 }}>
 					<Typography
 						component='header'
-						variant='h4'
-						mb='2'
+						variant='h5'
+						mb='1'
 						color='text.secondary'>
 						Past Offices
 					</Typography>
