@@ -2,7 +2,7 @@
 
 import axios from 'axios';
 
-export default async function fetcher(url: string) {
+export default async function fetcher(url: string): Promise<any> {
 	try {
 		const request = axios.get(url);
 		return (await request).data;
