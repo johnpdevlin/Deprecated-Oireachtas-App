@@ -17,7 +17,7 @@ import {
 	participationRecord,
 } from '../../Models/UI/participation';
 import { member } from '../../Models/UI/member';
-import SideBar from '../SideBar';
+import SideBar from './SideBar';
 
 const drawerWidth: number = 240;
 
