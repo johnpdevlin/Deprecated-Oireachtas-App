@@ -29,13 +29,16 @@ export default function TDprofile(props: { member: member }) {
 					minWidth: '100%',
 					flexDirection: 'column',
 				}}>
-				<Grid container spacing={2} sx={{ minWidth: '100%', display: 'flex' }}>
+				<Grid
+					container
+					spacing={1.8}
+					sx={{ minWidth: '100%', display: 'flex' }}>
 					<Grid item sx={{}}>
 						<img
 							src={imgUrl}
 							alt={props.member.fullName}
-							width={200}
-							height={200}
+							width={170}
+							height={170}
 							style={{
 								borderBottomLeftRadius: 5,
 								borderBottomRightRadius: 5,
