@@ -1,0 +1,19 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "Participation Records (Date)",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "houseNo",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "uri",
+          "order": "ASCENDING"
+        }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}
