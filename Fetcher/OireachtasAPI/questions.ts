@@ -1,6 +1,5 @@
 /** @format */
 
-import { flatten } from 'cheerio/lib/options';
 import { format } from 'date-fns';
 import fetcher from '..';
 import { questionRequest } from '../../Models/apiRequests';
