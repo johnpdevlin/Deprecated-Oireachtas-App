@@ -13,7 +13,6 @@ import {
 } from '@mui/material';
 import Link from 'next/link';
 import { member } from '../../Models/UI/member';
-import members from '../../Participation/WriteRecord/members';
 import TDcard from '../TDcard';
 
 const mdTheme = createTheme();
@@ -27,10 +26,10 @@ export default function IndexLayout(props: {
 }) {
 	const constitOutput = () => {
 		let count = 1;
-		let array: [][] = [];
-		let cons: [] = [];
+		let array: any[][] = [];
+		let cons: any[] = [];
 		for (let c of props.constits) {
-			cons.push(c.constituencyOrPanel);
+			cons.push(c.constituencyOrPanel!);
 			if (cons.length == 10) {
 				console.log('hello');
 				array.push(cons);

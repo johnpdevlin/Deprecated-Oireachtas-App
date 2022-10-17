@@ -26,11 +26,12 @@ export default function processMemberships(memberships: any[]) {
 	for (let m1 of memberships) {
 		// Nested loop required as multidimensional array must be traversed
 
-		let house: string = m1.membership.house.houseCode;
+		let house = m1.membership.house.houseCode;
+		let type: membershipType = 'house';
 
 		const thisHouse: membership = {
 			name: m1.membership.house.showAs,
-			type: 'house',
+			type: type,
 			houseNo: m1.membership.house.houseNo,
 			house: house,
 			startDate: m1.membership.dateRange.start,

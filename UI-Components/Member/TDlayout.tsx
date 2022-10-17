@@ -1,29 +1,21 @@
 /** @format */
 
 import * as React from 'react';
-import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
-
-import Typography from '@mui/material/Typography';
 
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-import Link from '@mui/material/Link';
 
-import Deposits from '../SideBar';
-import {
-	Table,
-	TableHead,
-	TableRow,
-	TableCell,
-	TableBody,
-} from '@mui/material';
 import RecordsTabs from './RecordsTabs';
 import TDprofile from './ProfileCard';
 import ParticipationTable from '../ParticipationTable';
-import { participationRecord } from '../../Models/UI/participation';
+import {
+	groupParticipationRecord,
+	participationRecord,
+} from '../../Models/UI/participation';
 import { member } from '../../Models/UI/member';
 import SideBar from '../SideBar';
 
@@ -32,7 +24,7 @@ const drawerWidth: number = 240;
 const mdTheme = createTheme();
 
 export default function TDlayout(props: {
-	participation?: participationRecord;
+	participation: (participationRecord | groupParticipationRecord)[];
 	member: member;
 }) {
 	let maxDate: Date = new Date();
@@ -68,7 +60,7 @@ export default function TDlayout(props: {
 									</Grid>
 									{/* Recent Deposits */}
 									<Grid item sx={{ display: 'flex', minWidth: '30%' }} lg={4}>
-										<SideBar offices={props.member.pastOffices} />
+										<SideBar offices={props.member.pastOffices!} />
 									</Grid>
 									{/* Participation Table */}
 									<Grid item xs={12}>

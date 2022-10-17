@@ -3,7 +3,7 @@ import fetchConstituencies from '../../Fetcher/OireachtasAPI/constituencies';
 import fetchHouses from '../../Fetcher/OireachtasAPI/houses';
 import fetchMember from '../../Fetcher/OireachtasAPI/member';
 import fetchParties from '../../Fetcher/OireachtasAPI/parties';
-import { member } from '../../Models/UI/member';
+import house from '../../Models/house';
 import {
 	participationRecord,
 	groupParticipationRecord,
@@ -24,7 +24,7 @@ export async function aggregateParticipationChecker(
 	);
 
 	const members = await fetchMember({ chamber, houseNo: session });
-	const house: house = await fetchHouses({
+	const house: house | any = await fetchHouses({
 		houseNo: session,
 		chamber: chamber,
 	});

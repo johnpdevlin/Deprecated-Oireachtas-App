@@ -9,45 +9,39 @@ import { Box, Divider, Paper } from '@mui/material';
 function pastOffice(office: membership) {
 	return (
 		<>
-			<Typography component='hh6' variant='p' color='primary'>
+			<Typography component='h6' color='primary'>
 				{office.name}
 			</Typography>
-			<Typography
-				component='h6'
-				color='text.secondary'
-				variant='p'
-				sx={{ flex: 1 }}>
+			<Typography component='h6' color='text.secondary' sx={{ flex: 1 }}>
 				{new Date(office.startDate).getFullYear()}
 				{' - '}
-				{new Date(office.endDate).getFullYear()}
+				{new Date(office.endDate!).getFullYear()}
 			</Typography>
 		</>
 	);
 }
 
-export default function SideBar(props: { offices }) {
-	if (props.offices!.length > 0) {
-		return (
-			<>
-				<Paper
-					sx={{
-						p: 2.5,
-					}}>
-					<Box sx={{ mb: 1 }}>
-						<Typography
-							component='header'
-							variant='h4'
-							mb='2'
-							color='text.secondary'>
-							Past Offices
-						</Typography>
-						<Divider />
-					</Box>
-					{props.offices?.map((o) => {
-						return pastOffice(o);
-					})}
-				</Paper>
-			</>
-		);
-	}
+export default function SideBar(props: { offices: any[] }) {
+	return (
+		<>
+			<Paper
+				sx={{
+					p: 2.5,
+				}}>
+				<Box sx={{ mb: 1 }}>
+					<Typography
+						component='header'
+						variant='h4'
+						mb='2'
+						color='text.secondary'>
+						Past Offices
+					</Typography>
+					<Divider />
+				</Box>
+				{props.offices?.map((o) => {
+					return pastOffice(o);
+				})}
+			</Paper>
+		</>
+	);
 }

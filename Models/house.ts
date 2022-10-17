@@ -1,9 +1,11 @@
 /** @format */
 
+import { chamber } from './UI/member';
+
 export default interface house {
 	name: string;
 	uri: string;
-	chamber?: 'dail' | 'seanad';
+	chamber?: chamber;
 	houseNo: number;
 	seats: number;
 	startDate: Date;

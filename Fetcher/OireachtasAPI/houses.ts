@@ -17,7 +17,7 @@ export default async function fetchHouses(
 	let houses = (await fetcher(url)).results;
 
 	if (props.formatted != false) {
-		const h: house = formatHouse(houses[0]);
+		const h: house = await formatHouse(houses[0]);
 		return h;
 	} else {
 		return houses;

@@ -1,41 +1,20 @@
 /** @format */
 
 import { GetStaticPaths, GetStaticProps } from 'next/types';
-import TdRecordsTabs from '../../UI-Components/Member/TdRecordsTabs';
-import dateFormatter from '../../Fetcher/dates2string';
-import format from 'date-fns/format';
+
 import Head from 'next/head';
-import {
-	Box,
-	Container,
-	createTheme,
-	CssBaseline,
-	Grid,
-	Paper,
-	ThemeProvider,
-	Typography,
-} from '@mui/material';
+import { Container } from '@mui/material';
 import Header from '../../UI-Components/Header';
-import AttendanceTable from '../../UI-Components/ParticipationTable';
-import formattedMember, {
-	memberFormatter,
-} from '../../Fetcher/OireachtasAPI/Formatter/member';
 import fetchMember from '../../Fetcher/OireachtasAPI/member';
-import fetcher from '../../Fetcher';
-import axios from 'axios';
-import { Info } from '@mui/icons-material';
-import { useState } from 'react';
-import { member } from '../../Models/UI/member';
-import getCommittees from '../../Fetcher/OireachtasAPI/committees';
-import fetchConstituencies from '../../Fetcher/OireachtasAPI/constituencies';
-import TDcard from '../../UI-Components/TDcard';
 import PartyLayout from '../../UI-Components/Party/PartyLayout';
+import { ParsedUrlQuery } from 'querystring';
+import { member } from '../../Models/UI/member';
 
 export default function Party(props: { uri: string; members: JSON[] | JSON }) {
-	let members = JSON.parse(props.members);
+	let members = JSON.parse(props.members.toString());
 
 	if (members.length > 1) {
-		members = members.filter((m) => m.party?.uri == props.uri);
+		members = members.filter((m: member) => m.party?.uri == props.uri);
 	}
 
 	let name: string;
@@ -92,10 +71,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-	const { slug } = params!;
+	const { slug }: ParsedUrlQuery = params!;
 
 	const members = await fetchMember({
-		partyId: slug,
+		partyId: slug?.toString(),
 		houseNo: 33,
 		serialized: true,
 	});

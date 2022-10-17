@@ -1,7 +1,7 @@
 /** @format */
 
 import fetcher from '..';
-import { houseRequest } from '../../Models/apiRequests';
+import { constituenciesRequest, houseRequest } from '../../Models/apiRequests';
 import house from '../../Models/house';
 
 export default async function fetchConstituencies(

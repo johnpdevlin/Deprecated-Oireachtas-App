@@ -5,7 +5,6 @@ import { format } from 'date-fns';
 import fetcher from '..';
 import { questionRequest } from '../../Models/apiRequests';
 import { Question } from '../../Models/UI/participation';
-import dateFormatter from '../dates2string';
 import formatQuestions from './Formatter/questions';
 
 export default async function fetchQuestions(

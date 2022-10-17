@@ -11,13 +11,13 @@ import IndexLayout from '../UI-Components/Index/IndexLayout';
 import fetchParties from '../Fetcher/OireachtasAPI/parties';
 import fetchConstituencies from '../Fetcher/OireachtasAPI/constituencies';
 
-const Home: NextPage = (props: {
+const Home = (props: {
 	members: JSON[];
 	parties: JSON[];
 	constits: JSON[];
 }) => {
-	let members: member[] = JSON.parse(props.members).filter(
-		(m) => m.cessation == (undefined || null)
+	let members: member[] = JSON.parse(props.members.toString()).filter(
+		(m: { cessation: null }) => m.cessation == (undefined || null)
 	);
 	const name = '33rd Dáil';
 	// let parties = JSON.parse(props.parties);
@@ -61,6 +61,7 @@ export const getStaticProps: GetStaticProps = async () => {
 		chamber: 'dail',
 		houseNo: 33,
 	});
+
 	const constits = await fetchConstituencies({ chamber: 'dail', houseNo: 33 });
 
 	return {

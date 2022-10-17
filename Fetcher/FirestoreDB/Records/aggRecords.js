@@ -31,9 +31,12 @@ export async function getAggMemberRecords(props) {
 	const querySnapshot = await getDocs(q);
 
 	let datesRecords = [];
+
 	querySnapshot.forEach((doc) => {
 		// doc.data() is never undefined for query doc snapshots
-		datesRecords.push(doc.data());
+		if (doc.data() != undefined) {
+			datesRecords.push(doc.data());
+		}
 	});
 
 	return datesRecords;

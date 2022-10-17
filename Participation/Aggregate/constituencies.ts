@@ -1,7 +1,7 @@
 /** @format */
 
 import house from '../../Models/house';
-import { member } from '../../Models/UI/member';
+import { chamber, member } from '../../Models/UI/member';
 import {
 	groupParticipationRecord,
 	participationRecord,
@@ -19,11 +19,13 @@ export default function aggregateConstitRecords(props: {
 	console.log(`aggregateConstitRecords commenced at ${new Date()}`);
 
 	for (let c of props.constits) {
+		const chamber: chamber = props.house.chamber;
+
 		const record: groupParticipationRecord = {
 			name: c.constituencyOrPanel.showAs,
 			uri: c.constituencyOrPanel.representCode,
 			type: 'constituency',
-			house: props.house.chamber,
+			house: chamber,
 			houseNo: props.house.houseNo,
 			members: [],
 			count: 0,

@@ -3,17 +3,21 @@
 import fetchMember from '../../Fetcher/OireachtasAPI/member';
 import Header from '../../UI-Components/Header';
 import { getAggMemberRecords } from '../../Fetcher/FirestoreDB/Records/aggRecords';
-import TDlayout from '../../UI-Components/member/TDlayout';
+import TDlayout from '../../UI-Components/Member/TDlayout';
 
 //EXTERNAL
 import { GetStaticPaths, GetStaticProps } from 'next/types';
 import Head from 'next/head';
+import {
+	groupParticipationRecord,
+	participationRecord,
+} from '../../Models/UI/participation';
 
 export default function TeachtaDála(props: {
 	member: JSON;
-	participation: JSON[];
+	participation: (participationRecord | groupParticipationRecord)[];
 }) {
-	const member = JSON.parse(props.member);
+	const member = JSON.parse(props.member.toString());
 
 	return (
 		<>
@@ -41,12 +45,16 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
 	const { slug } = params!;
 
-	const member = await fetchMember({ member: slug, serialized: true });
-
-	const participation = await getAggMemberRecords({
-		uri: slug,
-		houseNo: 33,
+	const member = await fetchMember({
+		member: slug?.toString(),
+		serialized: true,
 	});
+
+	const participation: participationRecord | groupParticipationRecord[] =
+		await getAggMemberRecords({
+			uri: slug,
+			houseNo: 33,
+		});
 
 	return {
 		props: {

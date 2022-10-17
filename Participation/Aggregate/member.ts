@@ -2,7 +2,8 @@
 
 import { eachDayOfInterval } from 'date-fns';
 import fetchHouses from '../../Fetcher/OireachtasAPI/houses';
-import { member } from '../../Models/UI/member';
+import house from '../../Models/house';
+import { chamber, member } from '../../Models/UI/member';
 import { participationRecord } from '../../Models/UI/participation';
 import checkDatesSitting from '../CheckDatesSitting';
 import aggregateQuestions from './member/questions';

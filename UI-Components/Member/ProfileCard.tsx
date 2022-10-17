@@ -83,7 +83,7 @@ export default function TDprofile(props: { member: member }) {
 											</b>
 											<small>
 												<i>
-													{pastParties.length > 0 ? ' formerly ' : null}
+													{pastParties!.length > 0 ? ' formerly ' : null}
 													{pastParties
 														? pastParties.map((pp) => {
 																if (count > 0) {
@@ -118,13 +118,13 @@ export default function TDprofile(props: { member: member }) {
 													: null}
 											</b>
 											{props.member.isCurrent == false
-												? props.member.pastConstituencies.length == 1
-													? props.member.pastConstituencies[0].name
+												? props.member.pastConstituencies!.length == 1
+													? props.member.pastConstituencies![0].name
 													: null
 												: null}
 											<small>
 												<i>
-													{props.member.pastConstituencies?.length > 0
+													{props.member.pastConstituencies!.length > 0
 														? ' formerly '
 														: null}
 													{props.member.pastConstituencies
@@ -160,7 +160,7 @@ export default function TDprofile(props: { member: member }) {
 												{' - '}
 												{props.member.isCurrent
 													? 'Present'
-													: new Date(props.member.cessation).getFullYear()}
+													: new Date(props.member.cessation!).getFullYear()}
 											</b>
 										</Typography>
 									</TableCell>

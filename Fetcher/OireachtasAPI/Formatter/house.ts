@@ -4,9 +4,9 @@ import { end } from 'cheerio/lib/api/traversing';
 import { endOfDecadeWithOptions } from 'date-fns/fp';
 import house from '../../../Models/house';
 
-export default async function formatHouse(h: Promise<any>): Promise<house> {
+export default async function formatHouse(h: any): Promise<house> {
 	// Formats data from Oireachtas API
-	let house = await h.house;
+	let house = h.house;
 	let end: Date | null;
 
 	// checks for null or undefined values

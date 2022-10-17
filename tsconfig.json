@@ -24,7 +24,8 @@
 		"UI-Components/TdRecords.js",
 		"UI-Components/Calendar.js",
 		"Components/Tools/StyleOutcome.js",
-		"state-store/calendar-context.jsx"
+		"state-store/calendar-context.jsx",
+		"Fetcher/FirestoreDB/Records/aggRecords.js"
 	],
 	"exclude": ["node_modules"]
 }

@@ -5,7 +5,7 @@ export interface member {
 	firstName: string;
 	lastName: string;
 	fullName: string;
-	dateOfBirth: Date;
+	dateOfBirth?: Date;
 	dateOfDeath?: Date;
 
 	// MEMBERSHIPS
@@ -41,6 +41,7 @@ export interface membership {
 
 export type membershipType =
 	| 'office'
+	| 'house'
 	| 'constituency'
 	| 'party'
 	| 'chamber'
@@ -48,5 +49,5 @@ export type membershipType =
 	| undefined;
 
 export type chamberType = 'house' | 'committee';
-export type chamber = 'dail' | 'seanad';
+export type chamber = 'dail' | 'seanad' | undefined;
 export type memberType = 'td' | 'senator' | undefined;

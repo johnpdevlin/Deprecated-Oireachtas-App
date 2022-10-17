@@ -11,7 +11,7 @@ export default async function fetchParties(
 	const url = `https://api.oireachtas.ie/v1/parties?chamber_id=${
 		props.chamber
 			? `&chamber=${props.chamber}${
-					props.houseNo ? `&house_no=${props.houseNo}` : ''
+					props.houseNo ? `&house_no=${props.houseNo.toString()}` : ''
 			  }`
 			: ''
 	}&limit=${props.limit ? props.limit : '150'}`;

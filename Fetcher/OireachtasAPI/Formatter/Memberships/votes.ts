@@ -20,7 +20,7 @@ export default function formatVotes(
 					: undefined;
 				const voteNo = v.division.voteId.slice(5);
 				const debateNo = v.division.debate.debateSection.slice(7);
-				let voted: string;
+				let voted: 'Tá' | 'Níl' | 'Staon' | undefined;
 				if (member!) {
 					voted = v.division.memberTally.showAs;
 				}

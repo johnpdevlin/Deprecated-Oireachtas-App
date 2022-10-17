@@ -10,23 +10,23 @@ let tempMembershipArray: membership[] = [];
 
 export function processMembershipType(
 	memberships: any[],
-	membershipType: membershipType
+	mType: membershipType
 ) {
 	tempMembershipArray = [];
 	// FINDS NUMBER OF MEMBERSHIPS FOR THIS TYPE // EG No. of Partys been a member of
-	const uris: string[] = countMemberships(memberships, membershipType);
+	const uris: string[] = countMemberships(memberships, mType);
 	// console.log(uris);
 	// IF MULTIPLE PARTIES
 	if (uris.length > 1) {
-		switch (membershipType) {
+		switch (mType) {
 			case 'office':
-				const officeNames = countMemberships(memberships, membershipType);
+				const officeNames = countMemberships(memberships, mType);
 				for (let off of officeNames) {
 					processIndividualMembership(
 						memberships.filter((o) => {
 							return o.office.officeName.showAs == off;
 						}),
-						membershipType
+						mType
 					);
 				}
 				//
@@ -37,7 +37,7 @@ export function processMembershipType(
 						memberships.filter((party) => {
 							return party.party.partyCode == u;
 						}),
-						membershipType
+						mType
 					);
 				}
 				break;
@@ -47,22 +47,22 @@ export function processMembershipType(
 						memberships.filter((constit) => {
 							return constit.represent.representCode == u;
 						}),
-						membershipType
+						mType
 					);
 				}
 				break;
 		}
 		// IF SINGLE PARTY
 	} else if (uris.length == 1) {
-		switch (membershipType) {
+		switch (mType) {
 			case 'office':
-				processIndividualMembership(memberships, membershipType);
+				processIndividualMembership(memberships, mType);
 				break;
 			case 'party':
-				processIndividualMembership(memberships, membershipType);
+				processIndividualMembership(memberships, mType);
 				break;
 			case 'constituency':
-				processIndividualMembership(memberships, membershipType);
+				processIndividualMembership(memberships, mType);
 		}
 	}
 
@@ -73,33 +73,33 @@ export function processMembershipType(
 
 function processIndividualMembership(
 	membershipInstances: any[],
-	membershipType: membershipType
+	mType: membershipType
 ) {
 	let uri: string;
 	let name: string;
-	let conType: string;
+	let conType: membershipType;
 
 	// Destructures to get basic details
-	if (membershipType == 'office') {
+	if (mType == 'office') {
 		name = membershipInstances[0].office.officeName.showAs;
 		uri = name;
-	} else if (membershipType == 'party') {
+	} else if (mType == 'party') {
 		name = membershipInstances[0].party.showAs;
 		uri = membershipInstances[0].party.partyCode;
-	} else if (membershipType == 'constituency') {
+	} else if (mType == 'constituency') {
 		name = membershipInstances[0].represent.showAs;
 		uri = membershipInstances[0].represent.representCode;
 		conType = membershipInstances[0].represent.representType;
 	}
 
-	const periods = reformatPeriods(membershipInstances, membershipType); // Gets continuous periods of membership
+	const periods = reformatPeriods(membershipInstances, mType!); // Gets continuous periods of membership
 
 	for (let p of periods) {
 		// FOR EACH UNBROKEN PERIOD, CREATES NEW OBJECT
 		const newMembership: membership = {
-			name: name,
-			uri: uri,
-			type: (membershipType = 'constituency' ? conType : undefined),
+			name: name!,
+			uri: uri!,
+			type: mType == 'constituency' ? conType! : undefined,
 			startDate: p.startDate,
 			endDate: p.endDate,
 		};
@@ -125,14 +125,14 @@ export function formatMemberships(tempArray: membership[]) {
 }
 
 export function countMemberships(
-	memberships: membership[],
-	membershipType: 'office' | 'constituency' | 'party'
+	memberships: any[],
+	mType: membershipType
 ): string[] {
 	// FINDS NUMBER OF PARTIES / CONSTIT / OFFICES
 
 	let uriCodes: string[] = [];
 
-	switch (membershipType) {
+	switch (mType) {
 		case 'office':
 			for (let m of memberships) {
 				check(m.office.officeName.showAs);
@@ -148,7 +148,6 @@ export function countMemberships(
 				check(m.represent.representCode);
 			}
 			break;
-		default:
 	}
 
 	function check(uri: string) {
@@ -161,13 +160,13 @@ export function countMemberships(
 	return uriCodes;
 }
 
-export function reformatPeriods(instances: any[], membershipType: string) {
+export function reformatPeriods(instances: any[], mType: string) {
 	let startDate: Date = new Date();
 	let endDate: Date | undefined = new Date();
 
 	if (instances.length >= 2) {
 		// Merges time periods and separates where breaks in party membership
-		switch (membershipType) {
+		switch (mType) {
 			case 'office':
 				return mergeMembershipPeriods(instances.map((i) => i.office));
 			case 'party':
@@ -177,7 +176,7 @@ export function reformatPeriods(instances: any[], membershipType: string) {
 		}
 	} else if (instances.length == 1) {
 		// If only one instance, no merging required
-		switch (membershipType) {
+		switch (mType) {
 			case 'office':
 				return [
 					{
@@ -204,7 +203,6 @@ export function reformatPeriods(instances: any[], membershipType: string) {
 }
 
 export function mergeMembershipPeriods(instances: any[]) {
-	// console.log(instances);
 	const yearRange = instances.map((i) => {
 		let end = () => {
 			if (i.dateRange.end == (null || undefined)) {

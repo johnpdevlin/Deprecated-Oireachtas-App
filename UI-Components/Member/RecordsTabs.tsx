@@ -22,10 +22,6 @@ import TdVotes from './Votes';
 
 // INTERNAL FETCH / TOOL COMPONENTS
 import Calendar from './Calendar';
-import { datePickerValueManager } from '@mui/x-date-pickers/DatePicker/shared';
-import { dateFormatter } from '../../Fetcher/dates2string';
-import fetchDebates from '../../Fetcher/OireachtasAPI/debates';
-import { Console } from 'console';
 
 export default function RecordsTabs(props: {
 	minDate: Date;

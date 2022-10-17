@@ -7,7 +7,7 @@ import processMemberships from './Memberships/memberships';
 
 import findOldestDate from '../../../Components/Tools/Time/oldestDate';
 
-export default function formatMember(m: Promise<any>): member {
+export default function formatMember(m: any): member {
 	const memberships = processMemberships(m.memberships);
 
 	const { offices, parties, constituencies, seanads, dails } = memberships;
@@ -22,7 +22,9 @@ export default function formatMember(m: Promise<any>): member {
 	const setCessation = (): Date | undefined => {
 		let cease: Date = new Date();
 		if (isCurrent == false) {
-			const d: Date[] = constituencies.past.map((c) => c.endDate);
+			const d: Date[] = constituencies.past.map((c) => {
+				return c.endDate!;
+			});
 			if (d.length > 1) {
 				cease = findOldestDate(d);
 			} else {
@@ -82,7 +84,7 @@ export default function formatMember(m: Promise<any>): member {
 	const setFirstElected = (): Date => {
 		let dail = firstDailElected;
 		let seanad = firstSeanadElected;
-		let elected: Date = new Date();
+		let elected: Date | undefined = new Date();
 		if (dail! < seanad!) {
 			elected = dail;
 		} else if (dail! > seanad!) {
@@ -92,14 +94,14 @@ export default function formatMember(m: Promise<any>): member {
 		} else {
 			elected = dail;
 		}
-		return elected;
+		return elected!;
 	};
 
 	let isCurrent: boolean = setIsCurrent();
-	let firstDailElected: Date = setFirstDailElected();
-	let firstSeanadElected: Date = setFirstSeanadElected();
+	let firstDailElected: Date | undefined = setFirstDailElected();
+	let firstSeanadElected: Date | undefined = setFirstSeanadElected();
 	let firstElected: Date = setFirstElected();
-	let cessation: Date = setCessation();
+	let cessation: Date | undefined = setCessation();
 	// const memberType = (): String | undefined => {
 	// 	if (constituencies.current[0].type == 'constituency') {
 	// 		return 'td';
@@ -161,9 +163,9 @@ export default function formatMember(m: Promise<any>): member {
 		dails: dails!,
 		isCurrent: isCurrent!,
 		firstElected: firstElected!,
-		firstDailElected: firstDailElected!, //
+		firstDailElected: firstDailElected!,
 		firstSeanadElected: firstSeanadElected!,
-		cessation: cessation!, // current
+		cessation: cessation!,
 		oireachtasUrl: `https://www.oireachtas.ie/en/members/member/${m.memberCode}`,
 	};
 

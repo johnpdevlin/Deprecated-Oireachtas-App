@@ -16,7 +16,10 @@ import {
 } from '@mui/material';
 
 import DropDownSelect from './DropDownPeriod';
-import { participationRecord } from '../Models/UI/participation';
+import {
+	groupParticipationRecord,
+	participationRecord,
+} from '../Models/UI/participation';
 import Link from 'next/link';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -41,38 +44,36 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 export default function ParticipationTable(
-	participation: participationRecord[]
+	participation: (participationRecord | groupParticipationRecord)[]
 ) {
-	const rows: [] = participation.participation.map((p: participationRecord) => {
-		let divisor: number = 1;
-		if (p.count > 0) {
-			divisor = p.count;
-		} else if (p.members.length > 1) {
-			divisor = p.members.length;
-		}
+	const rows: any[] = participation.map(
+		(p: participationRecord | groupParticipationRecord) => {
+			let divisor: number = p.members.length;
 
-		const name = p.name;
-		const houseContributed: number =
-			(p.houseContributed / (p.houseContributed + p.noHouseContribution)) * 100;
-		const houseVotes: number = p.houseVotes / divisor;
-		if (!p.type) {
-			p.type = 'td';
-		}
-		const uri = `/${p.type}/${p.uri}`;
-		let oralQuestions: number = p.oralQuestions / divisor;
-		let writtenQuestions: number = p.writtenQuestions / divisor;
-		let houseSpeeches: number = p.houseSpeeches / divisor;
+			const name = p.name;
+			const houseContributed: number =
+				(p.houseContributed / (p.houseContributed + p.noHouseContribution)) *
+				100;
+			const houseVotes: number = p.houseVotes / divisor;
+			if (!p.type) {
+				p.type = 'td';
+			}
+			const uri = `/${p.type}/${p.uri}`;
+			let oralQuestions: number = p.oralQuestions! / divisor;
+			let writtenQuestions: number = p.writtenQuestions! / divisor;
+			let houseSpeeches: number = p.houseSpeeches! / divisor;
 
-		return {
-			name,
-			houseContributed,
-			houseVotes,
-			oralQuestions,
-			writtenQuestions,
-			houseSpeeches,
-			uri,
-		};
-	});
+			return {
+				name,
+				houseContributed,
+				houseVotes,
+				oralQuestions,
+				writtenQuestions,
+				houseSpeeches,
+				uri,
+			};
+		}
+	);
 
 	return (
 		<TableContainer

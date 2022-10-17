@@ -11,7 +11,6 @@ import {
 	createTheme,
 } from '@mui/material';
 import { member } from '../../Models/UI/member';
-import members from '../../Participation/WriteRecord/members';
 import TDcard from '../TDcard';
 
 const mdTheme = createTheme();

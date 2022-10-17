@@ -17,6 +17,7 @@ export type groupType =
 	| 'committee';
 
 export interface participationRecord {
+	type?: groupType;
 	name: string;
 	uri: string;
 	house: chamber;
@@ -52,9 +53,9 @@ export interface participationRecord {
 // }
 
 export interface groupParticipationRecord extends participationRecord {
-	type: groupType;
+	type?: groupType;
 	pastMembers?: Array<{ uri: string; days: number }>;
-	count?: number;
+	count?: number | undefined;
 }
 
 export interface Question {
