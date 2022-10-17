@@ -11,7 +11,6 @@ import {
 	createTheme,
 } from '@mui/material';
 import { member } from '../../Models/UI/member';
-import members from '../../Participation/WriteRecord/members';
 import TDcard from '../TDcard';
 
 const mdTheme = createTheme();
@@ -22,13 +21,13 @@ export default function PartyLayout(props: {
 	members: member[] | member;
 }) {
 	let members: member[] = [];
-	if (props.members.length > 1) {
-		members = members.push(...props.members);
+
+	if (Array.isArray(props.members)!) {
+		props.members.forEach((m: member) => members.push(m));
 	} else {
 		members.push(props.members);
 	}
 
-	console.log(members);
 	return (
 		<>
 			<main>

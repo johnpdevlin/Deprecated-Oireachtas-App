@@ -73,7 +73,7 @@ export default function TDlayout(props: {
 											<RecordsTabs
 												minDate={minDate}
 												maxDate={maxDate}
-												member={props.members}
+												member={props.member.uri}
 											/>
 										</Paper>
 									</Grid>

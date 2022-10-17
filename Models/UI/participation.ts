@@ -10,6 +10,7 @@ export type MembershipType =
 	| 'committee';
 
 export type groupType =
+	| 'td'
 	| 'house'
 	| 'party'
 	| 'constituency'

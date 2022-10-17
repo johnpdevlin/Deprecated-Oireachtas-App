@@ -43,10 +43,10 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 	},
 }));
 
-export default function ParticipationTable(
-	participation: (participationRecord | groupParticipationRecord)[]
-) {
-	const rows: any[] = participation.map(
+export default function ParticipationTable(props: {
+	participation: (participationRecord | groupParticipationRecord)[];
+}) {
+	const rows: any[] = props.participation.map(
 		(p: participationRecord | groupParticipationRecord) => {
 			let divisor: number = p.members.length;
 

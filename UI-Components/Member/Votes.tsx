@@ -62,7 +62,7 @@ export default function TdVotes(props: { member: string; selectedDate: Date }) {
 								<Grid item xs={2.1} md={2.0} lg={1.8}>
 									<Item>
 										<small>Voted:</small>
-										{StyleOutcome(v.voted)}
+										{StyleOutcome(v.voted!)}
 									</Item>
 								</Grid>
 								<Grid item xs={3.3} md={3.4} lg={2.2}>
