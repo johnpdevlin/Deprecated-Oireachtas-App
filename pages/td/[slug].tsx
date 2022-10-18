@@ -61,7 +61,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 			member: member,
 			participation: participation,
 		},
-		revalidate: 43200, // 12 hours
+		// revalidate: 43200, // 12 hours
 	};
 };
 

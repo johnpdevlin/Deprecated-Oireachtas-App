@@ -76,7 +76,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 			uri: slug,
 			members: members,
 		},
-		revalidate: 43200, // 12 hours
+		// revalidate: 43200, // 12 hours
 	};
 };
 
