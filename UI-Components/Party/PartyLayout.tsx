@@ -43,30 +43,35 @@ export default function PartyLayout(props: {
 									: theme.palette.grey[900],
 							flexGrow: 1,
 						}}>
-						<Container
-							maxWidth='lg'
-							sx={{ mt: 5, mb: 4, maxWidth: '100%' }}></Container>
-						<Paper
-							sx={{
-								p: 2.5,
-								display: 'flex',
-								minWidth: '100%',
-								flexDirection: 'column',
-							}}>
-							{/* NAME / TITLE */}
-							<Typography variant='h2' color='text.primary' align='left'>
-								{props.name}
-							</Typography>
-							{/* TD CARDS */}
-							<Grid
-								container
-								spacing={2}
-								sx={{ minWidth: '100%', display: 'flex' }}>
-								{members.map((m, index) => {
-									return <TDcard member={m} />;
-								})}
-							</Grid>
-						</Paper>
+						<Container maxWidth='lg' sx={{ mt: 5, mb: 4, maxWidth: '100%' }}>
+							<Paper
+								sx={{
+									p: 2.5,
+									display: 'flex',
+									minWidth: '100%',
+									flexDirection: 'row',
+								}}>
+								{/* NAME / TITLE */}
+								<Typography variant='h2' color='text.primary' align='left'>
+									{props.name}
+								</Typography>
+								{/* TD CARDS */}
+								<Grid
+									container
+									spacing={2}
+									sx={{
+										minWidth: '100%',
+										direction: 'row',
+										display: 'flex',
+										alignItems: 'center',
+										justifyContent: 'center',
+									}}>
+									{members.map((m, index) => {
+										return <TDcard member={m} />;
+									})}
+								</Grid>
+							</Paper>
+						</Container>
 					</Box>
 				</ThemeProvider>
 			</main>

@@ -192,8 +192,10 @@ export default function IndexLayout(props: {
 								spacing={2}
 								sx={{
 									minWidth: '100%',
+									direction: 'row',
 									display: 'flex',
 									alignItems: 'center',
+									justifyContent: 'center',
 								}}>
 								{props.members.map((member, index) => {
 									return <TDcard member={member} />;

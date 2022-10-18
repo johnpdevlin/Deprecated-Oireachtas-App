@@ -43,7 +43,7 @@ export default function ConstituencyLayout(props: {
 								p: 2.5,
 								display: 'flex',
 								minWidth: '100%',
-								flexDirection: 'column',
+								flexDirection: 'row',
 							}}>
 							{/* NAME / TITLE */}
 							<Typography variant='h2' color='text.primary' align='left'>
@@ -53,7 +53,13 @@ export default function ConstituencyLayout(props: {
 							<Grid
 								container
 								spacing={2}
-								sx={{ minWidth: '100%', display: 'flex' }}>
+								sx={{
+									minWidth: '100%',
+									direction: 'row',
+									display: 'flex',
+									alignItems: 'center',
+									justifyContent: 'center',
+								}}>
 								{props.members.map((member, index) => {
 									return <TDcard member={member} />;
 								})}
