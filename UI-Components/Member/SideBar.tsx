@@ -27,6 +27,7 @@ export default function SideBar(props: { offices: any[] }) {
 			<Paper
 				sx={{
 					p: 2.5,
+					maxWidth: '100%',
 				}}>
 				<Box sx={{ mb: 1 }}>
 					<Typography
