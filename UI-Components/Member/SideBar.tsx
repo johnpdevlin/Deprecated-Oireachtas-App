@@ -9,10 +9,10 @@ import { Box, Divider, Paper } from '@mui/material';
 function pastOffice(office: membership) {
 	return (
 		<>
-			<Typography component='h6' color='primary'>
+			<Typography component='body' color='primary'>
 				{office.name}
 			</Typography>
-			<Typography component='h6' color='text.secondary' sx={{ flex: 1 }}>
+			<Typography component='body' color='text.secondary' sx={{ flex: 1 }}>
 				{new Date(office.startDate).getFullYear()}
 				{' - '}
 				{new Date(office.endDate!).getFullYear()}
