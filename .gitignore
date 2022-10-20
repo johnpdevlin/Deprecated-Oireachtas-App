@@ -35,6 +35,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# environment variables
-firestore.js
+# ENVRIONMENT VARIABLES
+firebase.js
 seeds/index.ts
+
