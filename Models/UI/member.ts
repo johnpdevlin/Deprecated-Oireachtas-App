@@ -39,7 +39,6 @@ export interface membership {
 	endDate?: Date | undefined;
 }
 
-// membership type
 export type membershipType =
 	| 'office'
 	| 'house'
